@@ -113,7 +113,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  print("selected");
+                  //   print("selected");
                 },
                 child: Image.asset('assets/images/download.jpg'),
               ),
@@ -121,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 splashColor: Colors.white70,
                 hoverColor: Colors.amber,
                 onTap: () {
-                  print("selected");
+                  //  print("selected");
                 },
                 child: SizedBox(
                   height: 300.0,
