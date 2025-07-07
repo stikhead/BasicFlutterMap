@@ -32,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessengerState().showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text("Snackbar"),
                       behavior: SnackBarBehavior.floating,
@@ -45,6 +45,43 @@ class _SettingsPageState extends State<SettingsPage> {
                   foregroundColor: Colors.white,
                 ),
                 child: Text("Snackbar"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showAboutDialog(context: context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.teal,
+                  foregroundColor: Colors.white,
+                ),
+                child: Text("About Dialog"),
+              ),
+              Divider(color: Colors.teal, thickness: 2.0, endIndent: 100.0),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("title"),
+                        content: Text("Modifiable"),
+                        actions: [
+                          FilledButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text("close"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.teal,
+                  foregroundColor: Colors.white,
+                ),
+                child: Text("Alert Dialog"),
               ),
               DropdownButton(
                 value: menuItem,

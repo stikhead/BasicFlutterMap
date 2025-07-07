@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/views/widget_tree.dart';
-import 'package:my_app/views/widgets/hero_widget.dart';
+import 'package:my_app/views/pages/login_page.dart';
+import 'package:my_app/views/widgets/hero_widget2.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -13,29 +13,57 @@ class WelcomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            HeroWidget(),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.greenAccent,
+            Expanded(child: HeroWidget2()),
+            FittedBox(
+              child: Text(
+                "FlutterMapp",
+                style: TextStyle(
+                  color: Colors.teal[200],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                ),
               ),
-              child: Text("Login"),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return WidgetTree();
-                    },
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green[50],
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginPageApp();
+                      },
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.greenAccent,
+                  foregroundColor: Colors.black,
+                ),
+                child: Text("Login"),
               ),
-              child: Text("Register"),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5.0),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginPageApp();
+                      },
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green[50],
+                  foregroundColor: Colors.black,
+                ),
+                child: Text("Register"),
+              ),
             ),
           ],
         ),
