@@ -96,13 +96,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   });
                 },
               ),
-              TextField(
-                decoration: InputDecoration(border: OutlineInputBorder()),
-                controller: controller,
-                onEditingComplete: () {
-                  setState(() {});
-                },
-              ),
+
               Text(controller.text),
               Checkbox(
                 tristate: true,

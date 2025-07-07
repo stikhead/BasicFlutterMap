@@ -28,12 +28,13 @@ class WelcomePage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return LoginPageApp();
-                      },
+                    PageRouteBuilder(
+                      transitionDuration: Duration(
+                        seconds: 2,
+                      ), // 👈 Faster animation here
+                      pageBuilder: (_, __, ___) => LoginPageApp(),
                     ),
                   );
                 },

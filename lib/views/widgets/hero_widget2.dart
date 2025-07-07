@@ -10,7 +10,7 @@ class HeroWidget2 extends StatelessWidget {
       tag: 'vr-glass',
       child: ClipRRect(
         borderRadius: BorderRadius.circular(2.0),
-        child: Lottie.asset("lotties/test.json"),
+        child: Lottie.asset("assets/lotties/test.json"),
       ),
     );
   }
