@@ -20,7 +20,7 @@ class LoginPageApp extends StatelessWidget {
               width: 300,
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
