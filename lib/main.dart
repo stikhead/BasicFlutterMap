@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/data/notifiers.dart';
 import 'package:my_app/views/pages/welcome.dart';
-import 'package:lottie/lottie.dart';
 
 void main() {
   runApp(const MyApp());
