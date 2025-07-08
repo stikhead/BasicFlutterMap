@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/data/constants.dart';
 import 'package:my_app/data/notifiers.dart';
 import 'package:my_app/views/pages/home.dart';
 import 'package:my_app/views/pages/notification.dart';
 import 'package:my_app/views/pages/profile.dart';
 import 'package:my_app/views/pages/settings.dart';
 import 'package:my_app/views/widgets/navbar_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<Widget> pages = [HomePage(), ProfilePage(), NotificationWidget()];
 
@@ -19,8 +21,14 @@ class WidgetTree extends StatelessWidget {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               currentBrightnessDark.value = !currentBrightnessDark.value;
+              final SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              await prefs.setBool(
+                KConstants.themeModeKey,
+                currentBrightnessDark.value,
+              );
             },
             icon: ValueListenableBuilder(
               valueListenable: currentBrightnessDark,

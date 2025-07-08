@@ -21,11 +21,11 @@ class _ProfilePageState extends State<ProfilePage> {
       children: [
         ListTile(
           onTap: () {
+            selectedPageNotifier.value = 0;
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  selectedPageNotifier.value = 0;
                   return WelcomePage();
                 },
               ),

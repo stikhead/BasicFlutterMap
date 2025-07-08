@@ -32,7 +32,7 @@ class WelcomePage extends StatelessWidget {
                     context,
                     PageRouteBuilder(
                       transitionDuration: Duration(
-                        seconds: 2,
+                        seconds: 1,
                       ), // 👈 Faster animation here
                       pageBuilder: (_, __, ___) => LoginPageApp(),
                     ),

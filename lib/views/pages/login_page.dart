@@ -14,6 +14,17 @@ class _LoginPageAppState extends State<LoginPageApp> {
   TextEditingController controllerPwd = TextEditingController();
   String confirmEmail = '123';
   String confirmPwd = '123';
+  bool _showLogin = false;
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 1000), () {
+      setState(() {
+        _showLogin = true;
+      });
+    });
+  }
+
   @override
   void dispose() {
     controllerEmail.dispose();
@@ -31,7 +42,14 @@ class _LoginPageAppState extends State<LoginPageApp> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Expanded(child: HeroWidget2())],
+              children: [
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: HeroWidget2(),
+                  ),
+                ),
+              ],
             ),
           ),
           Align(
@@ -41,54 +59,57 @@ class _LoginPageAppState extends State<LoginPageApp> {
               padding: const EdgeInsets.only(
                 bottom: 100,
               ), // 👈 Space from bottom
-              child: Container(
-                width: 300,
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 10.0),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
+              child:
+                  _showLogin
+                      ? Container(
+                        width: 300,
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withAlpha((20 * 255).toInt()),
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                      ),
-                      controller: controllerEmail,
-                      onEditingComplete: () {
-                        setState(() {});
-                      },
-                    ),
-                    SizedBox(height: 14),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                              controller: controllerEmail,
+                              onEditingComplete: () {
+                                setState(() {});
+                              },
+                            ),
+                            SizedBox(height: 14),
+                            TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Password',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                              controller: controllerPwd,
+                              onEditingComplete: () {
+                                setState(() {});
+                              },
+                            ),
+                            SizedBox(height: 12),
+                            FilledButton(
+                              onPressed: () {
+                                onLogin();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(double.infinity, 40),
+                              ),
+                              child: Text('Login'),
+                            ),
+                          ],
                         ),
-                      ),
-                      controller: controllerPwd,
-                      onEditingComplete: () {
-                        setState(() {});
-                      },
-                    ),
-                    SizedBox(height: 12),
-                    ElevatedButton(
-                      onPressed: () {
-                        onLogin();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 40),
-                      ),
-                      child: Text('Login'),
-                    ),
-                  ],
-                ),
-              ),
+                      )
+                      : SizedBox.shrink(),
             ),
           ),
         ],
@@ -99,13 +120,14 @@ class _LoginPageAppState extends State<LoginPageApp> {
   void onLogin() {
     if (confirmEmail == controllerEmail.text &&
         confirmPwd == controllerPwd.text) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) {
             return WidgetTree();
           },
         ),
+        (route) => false,
       );
     }
   }
